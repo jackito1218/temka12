@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Infos</h1>
+<% if user_signed_in? %>
+<li>
+  <%= link_to('logout',destroy_user_session_path, :method => :delete) %>
+</li>
+<% else %>
+<%= link_to('login',user_session_path) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Birth date</th>
+      <th>Gender</th>
+      <th>Register</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @infos.each do |info| %>
+      <tr>
+        <td><%= info.name %></td>
+        <td><%= info.birth_date %></td>
+        <td><%= info.gender %></td>
+        <td><%= info.register_id %></td>
+        <td><%= info.location %></td>
+        <td><%= link_to 'Show', info %></td>
+        <td><%= link_to 'Edit', edit_info_path(info) %></td>
+        <td><%= link_to 'Destroy', info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Info', new_info_path %>
